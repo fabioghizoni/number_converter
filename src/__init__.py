@@ -11,8 +11,9 @@ def create_app(debug = False):
     # Returns something for the homepage
     @app.route('/')
     def index():
-        return jsonify({'message': 'TESTE'})
+        return jsonify({'message': 'Number-to-Text Converter'})
 
+    # Sets the endpoint, attributing it to the 'converter' function
     from .converter import converter
     @app.route('/<string:num>', methods = ['GET'])
     def number_converter(num):

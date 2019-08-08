@@ -8,7 +8,6 @@ n_text = {
             'sessenta', 'setenta', 'oitenta', 'noventa'],
     'cent': ['', 'cento', 'duzentos', 'trezentos', 'quatrocentos',
             'quinhentos', 'seicentos', 'setecentos', 'oitocentos', 'novecentos'],
-    'spec': ['cem', 'mil'] # Special
 }
 
 def converter(num):
@@ -57,4 +56,22 @@ def cent_converter(num):
     return text
 
 def high_converter(num):
-    return ''
+    # Splits the number and checks its length, building the thousand's prefix
+    n_array = list(str(num))
+    if len(n_array) == 4:
+        n_thou = int(n_array[0])
+    else:
+        n_thou = int(''.join(n_array[:2]))
+
+    text = 'mil' if (n_thou == 1) else dec_converter(n_thou) + ' mil'
+
+    # Conditions depending the cent (which could be dec)
+    n_cent = int(''.join(n_array[-3:]))
+    if n_cent == 0:
+        pass
+    elif n_cent < 100:
+        text = text + ' e ' + dec_converter(n_cent)
+    else:
+        text = text + ' e ' + cent_converter(n_cent)
+
+    return text
