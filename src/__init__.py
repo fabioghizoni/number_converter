@@ -21,6 +21,6 @@ def create_app(debug = False):
             num = int(num)
             return jsonify(converter(num))
         except:
-            return jsonify({ 'error': 'The input is not a number' })
+            return jsonify({ 'ERROR': 'Input not an integer: cannot resolve' })
 
     return app

@@ -20,7 +20,7 @@ def converter(num):
     elif abs(num) < 100000:
         text = high_converter(abs(num))
     else:
-        return { 'error': str(num) + ' is out of range' }
+        return { 'ERROR': 'Number is out of range' }
 
     # Deals with negative numbers
     if num < 0:
