@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 def create_app(debug = False):
     # Flask initialization and simple config
@@ -11,6 +11,16 @@ def create_app(debug = False):
     # Returns something for the homepage
     @app.route('/')
     def index():
-        return 'TESTE'
+        return jsonify({'message': 'TESTE'})
+
+    from .converter import converter
+    @app.route('/<string:num>', methods = ['GET'])
+    def number_converter(num):
+        # Handles possible exceptions in the input
+        try:
+            num = int(num)
+            return jsonify(converter(num))
+        except:
+            return jsonify({ 'error': 'The input is not a number' })
 
     return app
