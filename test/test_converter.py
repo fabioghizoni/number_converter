@@ -32,7 +32,7 @@ class TestClass(unittest.TestCase):
         self.assertEqual(converter(999999999999), error_2)
         self.assertEqual(converter(-999999999999), error_2)
 
-    # Tests the FUNCTION converter, not the request
+    # Tests the FUNCTION converter, not the request (range: |0-99|)
     def test_decimal(self):
         self.assertEqual(converter(0), {'extenso': 'zero'})
         self.assertEqual(converter(19), {'extenso': 'dezenove'})
@@ -42,7 +42,16 @@ class TestClass(unittest.TestCase):
         self.assertEqual(converter(-20), {'extenso': 'menos vinte'})
         self.assertEqual(converter(-29), {'extenso': 'menos vinte e nove'})
 
-
+    # Tests the FUNCTION converter, not the request (range: |100-999|)
+    def test_centesimal(self):
+        self.assertEqual(converter(100), {'extenso': 'cem'})
+        self.assertEqual(converter(109), {'extenso': 'cento e nove'})
+        self.assertEqual(converter(120), {'extenso': 'cento e vinte'})
+        self.assertEqual(converter(129), {'extenso': 'cento e vinte e nove'})
+        self.assertEqual(converter(200), {'extenso': 'duzentos'})
+        self.assertEqual(converter(220), {'extenso': 'duzentos e vinte'})
+        self.assertEqual(converter(229), {'extenso': 'duzentos e vinte e nove'})
+        self.assertEqual(converter(-999), {'extenso': 'menos novecentos e noventa e nove'})
 
 if __name__ == '__main__':
     unittest.main()

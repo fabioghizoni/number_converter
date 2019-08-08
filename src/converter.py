@@ -42,7 +42,19 @@ def dec_converter(num):
     return text
 
 def cent_converter(num):
-    return ''
+    # Deals with a sole exception when it is '100'
+    if num == 100:
+        return 'cem'
+
+    # Splits the number, builds centesimal and adds the decimal part with dec_converter
+    n_array = list(str(num))
+    n_dec = int(''.join(n_array[-2:]))
+
+    text = n_text['cent'][int(n_array[0])]
+    if n_dec != 0:
+        text = text + ' e ' + dec_converter(n_dec)
+
+    return text
 
 def high_converter(num):
     return ''
