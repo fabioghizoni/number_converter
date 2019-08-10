@@ -6,9 +6,11 @@ n_text = {
             'dezesseis', 'dezessete', 'dezoito', 'dezenove'],
     'dec': ['', '', 'vinte', 'trinta', 'quarenta', 'cinquenta',
             'sessenta', 'setenta', 'oitenta', 'noventa'],
-    'cent': ['', 'cento', 'duzentos', 'trezentos', 'quatrocentos',
-            'quinhentos', 'seicentos', 'setecentos', 'oitocentos', 'novecentos'],
+    'cent': ['', 'cento', 'duzentos', 'trezentos',
+             'quatrocentos', 'quinhentos', 'seicentos',
+             'setecentos', 'oitocentos', 'novecentos']
 }
+
 
 def converter(num):
     # Selects where the number is in range
@@ -19,13 +21,14 @@ def converter(num):
     elif abs(num) < 100000:
         text = high_converter(abs(num))
     else:
-        return { 'ERROR': 'Number is out of range' }
+        return {'ERROR': 'Number is out of range'}
 
     # Deals with negative numbers
     if num < 0:
         text = 'menos ' + text
 
-    return { 'extenso': text }
+    return {'extenso': text}
+
 
 def dec_converter(num):
     # Here it follows the list, very straight forward
@@ -40,20 +43,23 @@ def dec_converter(num):
 
     return text
 
+
 def cent_converter(num):
     # Deals with a sole exception when it is '100'
     if num == 100:
         return 'cem'
 
-    # Splits the number, builds centesimal and adds the decimal part with dec_converter
+    # Splits the number, builds centesimal
     n_array = list(str(num))
     n_dec = int(''.join(n_array[-2:]))
 
+    # Adds the decimal part with dec_converter
     text = n_text['cent'][int(n_array[0])]
     if n_dec != 0:
         text = text + ' e ' + dec_converter(n_dec)
 
     return text
+
 
 def high_converter(num):
     # Splits the number and checks its length, building the thousand's prefix
