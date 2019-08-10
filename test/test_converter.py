@@ -1,6 +1,3 @@
-import sys
-sys.path.append('../src/')
-
 import unittest
 import requests
 from converter import converter as cvt
@@ -95,7 +92,7 @@ class TestClass(unittest.TestCase):
         res = {'extenso': 'menos nove mil e novecentos e noventa e nove'}
         self.assertEqual(cvt(-9999), res)
 
-    # Tests the FUNCTION converter, not the request (range: |1000-9999|)
+    # Tests the FUNCTION converter, not the request (range: |10000-99999|)
     def test_tenThousand(self):
         res = {'extenso': 'vinte mil e cem'}
         self.assertEqual(cvt(20100), res)

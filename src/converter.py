@@ -7,7 +7,7 @@ n_text = {
     'dec': ['', '', 'vinte', 'trinta', 'quarenta', 'cinquenta',
             'sessenta', 'setenta', 'oitenta', 'noventa'],
     'cent': ['', 'cento', 'duzentos', 'trezentos',
-             'quatrocentos', 'quinhentos', 'seicentos',
+             'quatrocentos', 'quinhentos', 'seiscentos',
              'setecentos', 'oitocentos', 'novecentos']
 }
 
